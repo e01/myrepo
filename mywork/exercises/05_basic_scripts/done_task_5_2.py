@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 '''
 Задание 5.2
@@ -47,3 +48,8 @@ london_co = {
         'routing': True
     }
 }
+
+device = input('Please input device name ')
+print(london_co.get(device))
+
+
