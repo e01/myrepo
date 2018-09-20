@@ -62,8 +62,9 @@ trunk_template = [
 
 if_mode = input('Enter interface mode ')
 if_type_number = input('Enter interface type and number ')
-vlans = input('Enter VLANS ')
-
+#vlans = input('Enter VLANS ')
+message = {'access': 'Enter VLAN number ', 'trunk': 'Enter allowed VLANs '}
+vlans = input(message.get(if_mode))
 print('interface {}'.format(if_type_number))
 operation_mode = {'access': access_template, 'trunk': trunk_template}
 print('\n'.join(operation_mode[if_mode]).format(vlans))

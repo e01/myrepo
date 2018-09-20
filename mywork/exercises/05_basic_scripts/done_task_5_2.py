@@ -49,7 +49,12 @@ london_co = {
     }
 }
 
-device = input('Please input device name ')
-print(london_co.get(device))
+device = input('Please input device name ').lower()
+dict =london_co.get(device)
+parameter = input('Please input parameter name {}:'.format(dict.keys())).lower()
+result = dict.get(parameter, 'There is no such parameter')
+print(result)
+
+        
 
 
