@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+#! usr/bin/env python
 '''
 Задание 6.2
 
@@ -14,3 +14,9 @@
 mac = ['aabb:cc80:7000', 'aabb:dd80:7340', 'aabb:ee80:7000', 'aabb:ff80:7000']
 
 mac_cisco = []
+
+i=0
+for i in range(len(mac)):
+	mac_cisco.append(mac[i].replace(':','.'))
+	i+=1
+print(mac_cisco)
