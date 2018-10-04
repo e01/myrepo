@@ -15,5 +15,11 @@
 '''
 
 from sys import argv
+file_name = argv[1]
+with open('{}'.format(file_name.strip())) as f:
+    for line in f:
+        if line.startswith('!'):
+            pass
+        else:
+            print(line.strip('\n'))
 
-file_name = argv[1:]
