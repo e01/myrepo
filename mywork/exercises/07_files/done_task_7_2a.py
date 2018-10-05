@@ -14,21 +14,12 @@
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 '''
 
-#from sys import argv
-#file_name = argv[1]
-file_name = "config_sw1.txt"
-ignore = ['duplex', 'alias', 'Current configuration']
-
+from sys import argv
+file_name = argv[1]
 with open('{}'.format(file_name.strip())) as f:
-    for line in f.readlines():
+    for line in f:
         if line.startswith('!'):
             pass
         else:
-            if not(any(elem in line for elem in ignore)):
-                    print(line.strip('\n'))
-'''            for elem in ignore:
-                if elem in line:
-                        pass
-                else:
-                        print(line.strip('\n'))
-'''
+            print(line.strip('\n'))
+

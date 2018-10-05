@@ -20,7 +20,8 @@ with open('ospf.txt') as f:
     string_list = [line.rstrip() for line in f.readlines()]
     for elem in string_list:
         table_right = elem.split()
-        table_right[2] = table_right[2].strip('[]')
+#        table_right[2] = table_right[2].strip('[]')
+        table_right = [line.strip(",[]") for line in table_right]
         table_right.remove('via')
         if table_right[0] == 'O':
             table_right[0] = 'OSPF'
