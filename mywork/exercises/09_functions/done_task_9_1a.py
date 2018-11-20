@@ -50,7 +50,7 @@ access_dict = {
     }
 
 
-def config_interface(intf_name, vlan):
+def config_interface(intf_name, vlan, psecurity= False):
     result=[]
     interface = 'interface {}'
     access_template = [
@@ -58,9 +58,15 @@ def config_interface(intf_name, vlan):
         'switchport nonegotiate', 'spanning-tree portfast',
         'spanning-tree bpduguard enable'
     ]
+    port_security = ['switchport port-security maximum 2',
+                     'switchport port-security violation restrict',
+                     'switchport port-security']
     result.append(interface.format(intf_name))
     for commands in access_template:
         result.append(commands.format(vlan))
+    if psecurity:
+        for commands in port_security:
+            result.append(commands)
     return result
 
 
@@ -76,7 +82,7 @@ def generate_access_config(access=access_dict):
     '''
     result = []
     for key in access:
-        result.extend(config_interface(key, access[key]))
+        result.extend(config_interface(key, access[key], True))
     return result
 
 print(generate_access_config())

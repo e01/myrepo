@@ -50,17 +50,21 @@ access_dict = {
     }
 
 
-def config_interface(intf_name, vlan):
+def config_interface(vlan, psecurity= False):
     result=[]
-    interface = 'interface {}'
     access_template = [
         'switchport mode access', 'switchport access vlan {}',
         'switchport nonegotiate', 'spanning-tree portfast',
         'spanning-tree bpduguard enable'
     ]
-    result.append(interface.format(intf_name))
+    port_security = ['switchport port-security maximum 2',
+                     'switchport port-security violation restrict',
+                     'switchport port-security']
     for commands in access_template:
         result.append(commands.format(vlan))
+    if psecurity:
+        for commands in port_security:
+            result.append(commands)
     return result
 
 
@@ -74,9 +78,7 @@ def generate_access_config(access=access_dict):
 
     Возвращает список всех портов в режиме access с конфигурацией на основе шаблона
     '''
-    result = []
-    for key in access:
-        result.extend(config_interface(key, access[key]))
+    result = {key:config_interface(access[key], True) for key in access}
     return result
 
 print(generate_access_config())
