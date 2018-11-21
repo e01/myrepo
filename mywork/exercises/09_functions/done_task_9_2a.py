@@ -36,9 +36,9 @@ def config_interface(vlan):
 
     for commands in trunk_template:
         if commands.startswith('switchport trunk allowed vlan'):
-            result.append(commands.format(' '.join(str(vlan) for vlan in vlan)))
+            result.append(commands.format(' '.join(str(vlan) for vlan in vlan).rstrip()))
         else:
-            result.append(commands)
+            result.append(commands.rstrip())
     return result
 
 

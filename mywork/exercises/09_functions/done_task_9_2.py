@@ -36,9 +36,9 @@ def config_interface(vlan):
 
     for commands in trunk_template:
         if commands.startswith('switchport trunk allowed vlan'):
-            result.append(commands.format(' '.join(str(vlan) for vlan in vlan)))
+            result.append(commands.format(' '.join(str(vlan) for vlan in vlan).rstrip()))
         else:
-            result.append(commands)
+            result.append(commands.rstrip())
     return result
 
 
@@ -49,7 +49,10 @@ def generate_trunk_config(trunk=trunk_dict):
 
     Возвращает список всех команд, которые были сгенерированы на основе шаблона
     '''
-    result = {key:config_interface(trunk[key]) for key in trunk}
+    result = []
+    for key in trunk:
+        result.append(key)
+        result.extend(config_interface(trunk[key]))
     return result
 
 print(generate_trunk_config())
