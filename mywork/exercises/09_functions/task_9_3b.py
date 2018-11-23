@@ -27,7 +27,6 @@ def get_int_vlan_map(config_file='config_sw2.txt'):
     ''' Checks config and filter access and trunk VLANs from interface'''
     with open(config_file) as f:
         cfg_lines = f.readlines()
-        vlan1_ports = {}
         trunk_dict = {}
         access_dict = {}
         for line in range(0,len(cfg_lines)):

@@ -36,3 +36,26 @@ def ignore_command(command, ignore):
     * False - если нет
     '''
     return any(word in command for word in ignore)
+
+def exclude_commands(filename="config_sw1.txt",del_excl=True):
+    parsed_cfg = []
+    with open(filename) as f:
+        for line in f:
+            if del_excl and line.startswith('!'):
+                pass
+            elif ignore_command(line, ignore):
+                pass
+            elif not line.strip():
+                pass
+            else:
+                parsed_cfg.append(line.rstrip())
+    return parsed_cfg
+
+print(exclude_commands())
+
+#def parse_config(config_file=config_sw1.txt):
+#    ''' Check config and parse all high level commands, function return dte dictionary with all high level commands, the keys are the subcommands (if applicatible)'''
+#    with open(config_file) as f:
+#        cfg = f.readlines()
+#        for line in range(0, len(cfg_lines)):
+#            command = cfg[line]
