@@ -19,7 +19,7 @@
 
 '''
 template = "{0:<4} {1:<14} {2:<10}"
-with open("CAM_table.txt") as f:
+with open("~\test.txt") as f:
     for line in f.readlines():
             string = (line.rstrip().split())
             for elem in string:
